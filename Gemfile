@@ -71,7 +71,9 @@ group :test do
   gem "webdrivers"
 
   gem 'pry-rails'
+ 
 end
+
 
 group :production do
   gem 'pg'
