@@ -96,12 +96,6 @@
                 <mxCell id="63" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.radio.aerial_-_antenna_1;fontSize=3;direction=north;" vertex="1" parent="1">
                     <mxGeometry x="230" y="651" width="168" height="21" as="geometry"/>
                 </mxCell>
-                <mxCell id="65" value="" style="endArrow=classic;html=1;fontSize=3;shape=link;" edge="1" parent="1">
-                    <mxGeometry width="50" height="50" relative="1" as="geometry">
-                        <mxPoint x="254" y="205" as="sourcePoint"/>
-                        <mxPoint x="407" y="158" as="targetPoint"/>
-                    </mxGeometry>
-                </mxCell>
             </root>
         </mxGraphModel>
     </diagram>
