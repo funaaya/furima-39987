@@ -62,14 +62,14 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
-      it 'パスワード（確認含む）が半角数字でないと保存できない' do
+      it 'パスワード（確認含む）が半角数字のみだと保存できない' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
         #binding.pry
         expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
       end
-      it 'パスワード（確認含む）が半角英字でないと保存できない' do
+      it 'パスワード（確認含む）が半角英字のみだと保存できない' do
         @user.password = 'abcde'
         @user.password_confirmation = 'abcde'
         @user.valid?
@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password Include both letters and numbers" )
       end
 
-      it 'パスワード（確認含む）が全角でないと保存できない' do
+      it 'パスワード（確認含む）が全角だと保存できない' do
         @user.password = '１１１１１１'
         @user.password_confirmation = '１１１１１１'
         @user.valid?
@@ -110,6 +110,26 @@ RSpec.describe User, type: :model do
         @user.first_name_kana = 'りくたろう'
         @user.valid?
         expect(@user.errors.full_messages).to include('First name kana is invalid')
+      end
+      t 'cannot register unless email contains @' do
+        @user.email = 'testemail.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email is invalid')
+      end 
+      it '名前が空だと登録できない' do
+        @user.name = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Name can't be blank")
+      end
+      it '名字のフリガナが空だと登録できない' do
+        @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+      end
+      it '名前のフリガナが空だと登録できない' do
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
       it '生年月日が空欄だと保存できない' do
         @user.birthday = ''
