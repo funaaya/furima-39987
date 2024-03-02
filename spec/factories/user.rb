@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :user do
+    name { "任意の名前" } 
     nickname { Faker::Name.name }
     email { Faker::Internet.unique.email }
     # ランダムで生成する際、英数字になるよう'1a'追加
