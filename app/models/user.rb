@@ -17,10 +17,10 @@ class User < ApplicationRecord
     # 半角英数字（空文字NG）以外の場合には、メッセージを出す
     validates :nickname
     # @含むこと・存在することはdeviseのデフォルト実装のため省略
-    #validates :email, uniqueness: true
+   
     # 全角ひらがな、全角カタカナ、漢字
-    validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
-    validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
+    validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
+    validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :first_name_kana, :last_name_kana, format: { with: /\A[ァ-ヶー－]+\z/, message: 'is invalid' }
 
     # 全角カタカナ

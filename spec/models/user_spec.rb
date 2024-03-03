@@ -85,8 +85,8 @@ RSpec.describe User, type: :model do
       end
 
       it 'パスワード（確認）が空欄だと保存できない' do
-        @user.password = '123456'
-        @user.password_confirmation = '123456'
+        @user.password = ''
+        @user.password_confirmation = ''
         @user.valid?
         #binding.pry
         expect(@user.errors.full_messages).to include('Password Include both letters and numbers')
