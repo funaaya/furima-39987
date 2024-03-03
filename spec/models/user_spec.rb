@@ -126,15 +126,18 @@ RSpec.describe User, type: :model do
         @user.last_name = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank")
+      end
       it '名（全角）が空だと登録できない' do
         @user.first_name = nil
         @user.valid?
         expect(@user.errors.full_messages).to include("First name can't be blank")
+      end
       it 'パスワードとパスワード（確認用）が不一致だと登録できない' do
         @user.password = 'password1'
         @user.password_confirmation = 'password2'
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
       it '名前のフリガナが空だと登録できない' do
         @user.first_name_kana = ''
         @user.valid?
