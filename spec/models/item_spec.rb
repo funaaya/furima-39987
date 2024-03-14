@@ -121,6 +121,11 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
+      it '半角数字以外の値が含まれている場合は保存できない' do
+        @item.half_width_numbers = １１１１１
+        @item.valid?
+        expect(@item.errors.full_messages).to include('half_width_numbers is invalid')
+      end
     end
   end
 end
