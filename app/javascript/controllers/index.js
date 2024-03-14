@@ -1,11 +1,14 @@
-// Import and register all your controllers from the importmap under controllers/*
+window.addEventListener('load', () => {
+  const priceInput = document.getElementById("price-input");
+  priceInput.addEventListener("input", () => {
+    const inputValue = priceInput.value;
 
-import { application } from "controllers/application"
+    // ここで販売利益の計算を行います。
+    // 計算方法はフリマの仕様に依存しますが、
+    // 例えば手数料が10%であれば以下のようになります。
+    const profit = (inputValue * 0.9);
 
-// Eager load all controllers defined in the import map under controllers/**/*_controller
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("controllers", application)
-
-// Lazy load controllers as they appear in the DOM (remember not to preload controllers in import map!)
-// import { lazyLoadControllersFrom } from "@hotwired/stimulus-loading"
-// lazyLoadControllersFrom("controllers", application)
+    const profitNumber = document.getElementById("profit");
+    profitNumber.innerHTML = profit;
+  });
+});
