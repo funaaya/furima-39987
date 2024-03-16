@@ -7,6 +7,8 @@ class Item < ApplicationRecord
   # has_one :buy
   # has_many :comments
 
+  
+
   # アクティブハッシュとのアソシエーション
   belongs_to :category
   belongs_to :prefecture
@@ -17,6 +19,12 @@ class Item < ApplicationRecord
   # active_storageとのアソシエーション
   # （items・active_storage_blobsテーブルを関連付け）
   has_one_attached :image
+
+  validates :content, presence: true, unless: :was_attached?
+
+  def was_attached?
+    self.image.attached?
+  end
 
   with_options presence: true do
     validates :image
