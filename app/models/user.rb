@@ -7,7 +7,7 @@ class User < ApplicationRecord
   # has_many :items
   # has_many :buys
   # has_many :comments
-  validates :name, presence: true
+  
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'Include both letters and numbers'
   validates :password, format: { with: /\A[!-~]+\z/ , message: 'is invalid' }
