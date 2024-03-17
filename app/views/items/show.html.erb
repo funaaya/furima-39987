@@ -24,8 +24,7 @@
       </span>
     </div>
 
-    <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合と同一人物ではない場合で、処理を分けましょう %>
-   <%# ログイン中であれば表示 %>
+   
   <% if user_signed_in? %>
    <% if current_user.id == @item.user.id %>
     <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
@@ -106,9 +105,9 @@
       後ろの商品 >
     </a>
   </div>
-  <%# 詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
-  <a href="#" class="another-item"><%= "商品のカテゴリー名" %>をもっと見る</a>
-  <%# //詳細ページで表示されている商品のカテゴリー名を表示しましょう %>
+  
+  <td class="detail-value"><%= @item.shipping_date.name %></td>
+  
 </div>
 
 <%= render "shared/footer" %>
