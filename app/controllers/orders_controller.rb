@@ -25,11 +25,11 @@ class OrdersController < ApplicationController
 
   def order_payment_params
     # この時点では、order_idが不要。またrequire外の情報は参照するため、mergeとする。
-    params.require(:order_payment).permit(:item_id, :post_code, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_payment).permit(:item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
-    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp.api_key = "pk_test_e2d68cd880b9412a45c32774"
     Payjp::Charge.create(
       amount: @item.price,        # 商品の値段
       card: order_params[:token], # カードトークン

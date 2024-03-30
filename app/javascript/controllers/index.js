@@ -1,4 +1,4 @@
-window.addEventListener('load', () => {
+window.addEventListener('load', function() {
   const priceInput = document.getElementById("price-input");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -10,5 +10,9 @@ window.addEventListener('load', () => {
 
     const profitNumber = document.getElementById("profit");
     profitNumber.innerHTML = profit;
+
+    pullDownButton.addEventListener('mouseout', function(){
+      console.log("mouseout OK")
+    })
   });
 });

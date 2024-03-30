@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe OrderPayment, type: :model do
   before do
     @order_payment = FactoryBot.build(:order_payment)
+  end
 
   describe '配送先情報の保存' do
     context '配送先情報の保存ができるとき' do
@@ -22,7 +23,7 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment).to be_valid
       end
       it '都道府県が「---」以外かつ空でなければ保存できる' do
-        @order_payment.prefecture_id = 1
+        @order_payment.prefecture_id = 2
         expect(@order_payment).to be_valid
       end
       it '市区町村が空でなければ保存できる' do
@@ -34,7 +35,7 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment).to be_valid
       end
       it '建物名が空でも保存できる' do
-        @order_payment.building = nil
+        @order_payment.building = ' '
         expect(@order_payment).to be_valid
       end
       it '電話番号が11番桁以内かつハイフンなしであれば保存できる' do
@@ -50,8 +51,8 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment.errors.full_messages).to include("User can't be blank")
       end
       it 'item_idが空だと保存できない' do
-        @order_payemnt.item_id = nil
-        @order_payemnt.valid?
+        @order_payment.item_id = nil
+        @order_payment.valid?
         expect(@order_payment.errors.full_messages).to include("Item can't be blank")
       end
       it '郵便番号が空だと保存できないこと' do
@@ -65,7 +66,7 @@ RSpec.describe OrderPayment, type: :model do
         expect(@order_payment.errors.full_messages).to include('Postcode is invalid. Include hyphen(-)')
       end
       it '都道府県が「---」だと保存できないこと' do
-        @order_payment.prefecture_id = 0
+        @order_payment.prefecture_id = 1
         @order_payment.valid?
         expect(@order_payment.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -104,7 +105,6 @@ RSpec.describe OrderPayment, type: :model do
         @order_payment.valid?
         expect(@order_payment.errors.full_messages).to include("Token can't be blank")
       end
-     end
-   end
- end
+    end
+  end
 end
