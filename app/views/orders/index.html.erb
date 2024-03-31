@@ -30,6 +30,7 @@
       </p>
     </div>
     <%# /支払額の表示 %>
+    <%= include_gon %>
 
     <%= form_with model: @order_payment, url: item_orders_path(@item), id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
     
@@ -101,7 +102,7 @@
           <label class="form-text">番地</label>
           <span class="indispensable">必須</span>
         </div>
-        <%= f.text_field :'address', class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+        <%= f.text_field :'block', class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
       </div>
       <div class="form-group">
         <div class='form-text-wrap'>

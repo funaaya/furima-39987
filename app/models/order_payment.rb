@@ -1,6 +1,6 @@
 class OrderPayment 
   include ActiveModel::Model
-  attr_accessor :item_id, :postcode, :prefecture_id, :block, :city, :building, :phone_number, :user_id, :product_id, :token
+  attr_accessor :item_id, :postcode, :prefecture_id, :block, :city, :building, :phone_number, :user_id, :product_id, :token, :price
 
   with_options presence: true do
     validates :block
