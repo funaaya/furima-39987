@@ -8,11 +8,12 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize: '500x500'), class: 'item-image' if @item.image.attached? %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
-      <%#if @item.order >
-      <div class="sold-out">
+     <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @item.order != nil %>
+      <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
+      <% end %> 
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
     <div class="item-price-box">
@@ -23,10 +24,12 @@
         <%= @item.shipping_cost.name %>
       </span>
     </div>
+  
+ 
 
    
-  <% if user_signed_in? %>
-   <% if current_user.id == @item.user.id %>
+   <% if user_signed_in? && @item.order.nil? %>
+    <% if current_user.id == @item.user.id %>
     <%= link_to '商品の編集', edit_item_path(@item.id), method: :get, class: "item-red-btn" %>
     <p class='or-text'>or</p>
     <%= link_to '削除', item_path(@item), data: { turbo_method: :delete }, class:'item-destroy' %>
