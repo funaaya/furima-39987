@@ -5,11 +5,11 @@ class OrdersController < ApplicationController
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_payment = OrderPayment.new
-    @item = Item.find(params[:item_id])
+    
   end
 
   def create
-    @item = Item.find(params[:item_id])
+    
     @order_payment = OrderPayment.new(order_payment_params)
     if @order_payment.valid?
       pay_item
@@ -25,9 +25,13 @@ class OrdersController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def order_payment_params
     # この時点では、order_idが不要。またrequire外の情報は参照するため、mergeとする。
-    params.require(:order_payment).permit(:item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:order_payment).permit(:postcode, :prefecture_id, :city, :block, :building, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
