@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user != current_user
+    if @item.user_id == current_user.id && @item.order.nil?
       redirect_to root_path
     end
  end  
@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
     if @item.user_id == current_user.id
       @item.destroy
     end
-    render :edit, status: :unprocessable_entity
+    redirect_to root_path
   end
   
 

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe OrderPayment, type: :model do
   before do
+    @user_id = FactoryBot.create(:user)
+    @item_id = FactoryBot.create(:item)
     @order_payment = FactoryBot.build(:order_payment)
   end
 
