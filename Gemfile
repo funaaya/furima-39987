@@ -74,7 +74,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 
-  gem 'pry-rails'
  
 end
 
@@ -86,3 +85,6 @@ gem 'devise'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'active_hash'
+gem 'payjp'
+gem 'pry-rails'
+gem 'gon'
