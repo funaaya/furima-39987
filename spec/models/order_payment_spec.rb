@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe OrderPayment, type: :model do
   before do
-    @user_id = FactoryBot.create(:user)
-    @item_id = FactoryBot.create(:item)
-    @order_payment = FactoryBot.build(:order_payment)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @order_payment = FactoryBot.build(:order_payment, user_id: user.id, item_id: item.id)
   end
 
   describe '配送先情報の保存' do
