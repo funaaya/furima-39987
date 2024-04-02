@@ -8,13 +8,13 @@
     </h2>
     <div class="item-img-content">
       <%= image_tag @item.image.variant(resize: '500x500'), class: 'item-image' if @item.image.attached? %>
-     <%# 商品が売れている場合は、sold outを表示しましょう %>
+     
       <% if @item.order != nil %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
       <% end %> 
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      
     </div>
     <div class="item-price-box">
       <span class="item-price">
