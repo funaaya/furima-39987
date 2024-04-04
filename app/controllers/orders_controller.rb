@@ -1,11 +1,17 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
-
+  
+  
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    elsif @item.order.present?
+      redirect_to root_path
+    else
     @order_payment = OrderPayment.new
-    
+    end
   end
 
   def create
@@ -48,4 +54,6 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     redirect_to root_path if current_user.id == @item.user_id || @item.order.present?
   end
+
+  
 end
