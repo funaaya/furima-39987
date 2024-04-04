@@ -73,7 +73,7 @@ app/assets/stylesheets/items/new.css %>
           <span class="indispensable">必須</span>
          </div>
         <%# end %>
-        <%= f.collection_select(:shipping_codt_id, ShippingCost.all, :id, :name, {}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:shipping_cost_id, ShippingCost.all, :id, :name, {}, {class:"select-box", id:"item-shipping-cost"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
